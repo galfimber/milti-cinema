@@ -1,0 +1,59 @@
+.films {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+.film {
+  position: relative;
+  width: 240px;
+  height: fit-content;
+  color: var(--text-color);
+  &:hover .movie__cover--darkened {
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+}
+.movie__cover-inner {
+  position: relative;
+}
+.movie__cover--darkened {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.1s ease-in;
+
+}
+.movie__info {
+  padding: 5px;
+}
+.movie__title {
+  margin-bottom: 5px;
+  font-size: 22px;
+}
+.movie__average {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px;
+
+  background-color: black;
+  border-radius: 50%;
+
+  font-size: 20px;
+  &--green{
+    border: 2px solid green;
+  }
+  &--orange{
+    border: 2px solid orange;
+  }
+  &--red{
+    border: 2px solid red;
+  }
+}

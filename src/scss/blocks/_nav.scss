@@ -1,0 +1,24 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 120px;
+
+    font-size: 25px;
+    font-weight: 500;
+    a {
+      color: var(--text-color);
+    }
+  }
+  &__btns {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 35px;
+
+    font-size: 35px;
+  }
+}

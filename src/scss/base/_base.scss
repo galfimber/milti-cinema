@@ -1,0 +1,30 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--page-bg);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  display: block;
+}
+
+.title-1 {
+  font-size: 80px;
+  font-weight: 700;
+}
+.title-2 {
+  font-size: 50px;
+  font-weight: 700;
+}
+a.link {
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: underline;
+}
