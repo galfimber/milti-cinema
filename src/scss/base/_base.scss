@@ -22,9 +22,16 @@ img {
   font-size: 50px;
   font-weight: 700;
 }
+.title-3 {
+  font-size: 30px;
+  font-weight: 500;
+}
+a {
+  color: var(--text-color);
+}
 a.link {
   font-size: 20px;
   font-weight: 500;
-  color: #fff;
+  color: var(--text-color);
   text-decoration: underline;
 }

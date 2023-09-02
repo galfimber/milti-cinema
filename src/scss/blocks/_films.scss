@@ -32,6 +32,9 @@
   margin-bottom: 5px;
   font-size: 22px;
 }
+.movie__category{
+  margin-bottom: 5px;
+}
 .movie__average {
   position: absolute;
   top: 0;
@@ -56,4 +59,7 @@
   &--red{
     border: 2px solid red;
   }
+}
+.movie__link{
+  //text-decoration: underline;
 }

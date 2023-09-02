@@ -8,8 +8,8 @@ const API_KEY = "84S4SNX-Y084WMK-K7FV73W-8G8P6MH";
 const API_URL_POPULAR =
   "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=10&top10=1";
 const API_URL_SEARCH =
-  "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=10&name=";
-getPopular(API_URL_POPULAR, "popular");
+  "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=12&name=";
+//getPopular(API_URL_POPULAR, "popular");
 
 async function getPopular(url, key) {
   const resp = await fetch(url, {
@@ -43,6 +43,7 @@ function getClassByRate(vote) {
 }
 function showSearchResult(data) {
   const searchResult = document.querySelector(".films");
+  searchResult.innerHTML = '';
 
   data.docs.forEach((film) => {
     const filmEl = document.createElement("a");
@@ -67,6 +68,7 @@ function showSearchResult(data) {
         <div class="movie__category">${film.genres.map(
           (genre) => ` ${genre.name}`
         )}</div>
+        <a class="movie__link" href="https://www.ggkinopoisk.ru/film/${film.id}/" target=_blank>Смотреть бесплатно</a>
         <div class="movie__average movie__average--${getClassByRate(
           film.rating.imdb
         )}">${film.rating.imdb}</div>
