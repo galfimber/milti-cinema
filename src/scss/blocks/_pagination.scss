@@ -1,9 +1,15 @@
 .pages {
+  display: none;
   padding-top: 50px;
-  display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
+  &--visible{
+    display: flex;
+  }
+}
+.page-active{
+  color: var(--btn-bg);
 }
 .pagination__btn {
   width: 20px;

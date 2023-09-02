@@ -9,7 +9,7 @@ const API_URL_POPULAR =
   "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=10&top10=1";
 const API_URL_SEARCH =
   "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=12&name=";
-//getPopular(API_URL_POPULAR, "popular");
+getPopular(API_URL_POPULAR, "popular");
 
 async function getPopular(url, key) {
   const resp = await fetch(url, {
@@ -46,7 +46,8 @@ function showSearchResult(data) {
   searchResult.innerHTML = '';
 
   data.docs.forEach((film) => {
-    const filmEl = document.createElement("a");
+    const filmEl = document.createElement("div");
+    let filmLink;
 
     film.watchability.items.forEach((source) => {
       if (source.name == "Kinopoisk HD") {
@@ -56,13 +57,12 @@ function showSearchResult(data) {
       }
     });
 
-    filmEl.target = "_blank";
     filmEl.classList.add("film");
     filmEl.innerHTML = `
-        <div class="movie__cover-inner">
+        <a href="${filmLink}" class="movie__cover-inner">
         <img src="${film.poster.url}" alt="${film.name}" class="movie__cover">
         <div class="movie__cover--darkened"></div>
-    </div>
+    </a>
     <div class="movie__info">
         <div class="movie__title">${film.name}</div>
         <div class="movie__category">${film.genres.map(

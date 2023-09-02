@@ -27,27 +27,26 @@ function getClassByRate(vote) {
 }
 function showSearchResult(data) {
   const searchResult = document.querySelector(".films");
-  const pagination = document.querySelector(".pagination");
   searchResult.innerHTML = "";
 
   data.docs.forEach((film) => {
-    const filmEl = document.createElement("a");
+    const filmEl = document.createElement("div");
+    let filmLink;
 
     film.watchability.items.forEach((source) => {
       if (source.name == "Kinopoisk HD") {
-        filmEl.href = source.url;
+        filmLink = source.url;
       } else {
-        filmEl.href = source.url;
+        filmLink = source.url;
       }
     });
 
-    filmEl.target = "_blank";
     filmEl.classList.add("film");
     filmEl.innerHTML = `
-          <div class="movie__cover-inner">
+          <a href="${filmLink}" class="movie__cover-inner">
           <img src="${film.poster.url}" alt="${film.name}" class="movie__cover">
           <div class="movie__cover--darkened"></div>
-      </div>
+      </a>
       <div class="movie__info">
           <div class="movie__title">${film.name}</div>
           <div class="movie__category">${film.genres.map(
@@ -63,64 +62,85 @@ function showSearchResult(data) {
           `;
     searchResult.appendChild(filmEl);
   });
-  const pages = document.createElement("div");
-  pages.classList.add("pages");
-  pages.innerHTML = `
-        <button class="pagination__btn" onclick="selectPage(1)">1</button>
-        <button class="pagination__btn" onclick="selectPage(${
-          data.page - 2
-        })">${data.page - 2}</button>
-        <button class="pagination__btn" onclick="selectPage(${
-          data.page - 1
-        })">${data.page - 1}</button>
-        <button class="pagination__btn" onclick="selectPage(${data.page})">${
-    data.page
-  }</button>
-        <button class="pagination__btn" onclick="selectPage(${
-          data.page + 1
-        })">${data.page + 1}</button>
-        <button class="pagination__btn" onclick="selectPage(${
-          data.page + 2
-        })">${data.page + 2}</button>
-        <button class="pagination__btn" onclick="selectPage(${data.pages})">${
-    data.pages
-  }</button>
-    `;
-  pagination.appendChild(pages);
+  const pages = document.querySelectorAll(".pagination__btn");
+  if (data.page < 4) {
+    pages.forEach((page) => {
+      switch (page.dataset.num) {
+        case "1":
+          page.innerHTML = 1;
+          break;
+        case "2":
+          page.innerHTML = 2;
+          break;
+        case "3":
+          page.innerHTML = 3;
+          break;
+        case "4":
+          page.innerHTML = 4;
+          break;
+        case "5":
+          page.innerHTML = 5;
+          break;
+        default:
+          break;
+      }
+      if(page.textContent == data.page){
+        document.querySelector('.page-active').classList.remove('page-active');
+        page.classList.add('page-active');
+      }
+    });
+  } else {
+    pages.forEach((page) => {
+      switch (page.dataset.num) {
+        case "1":
+          page.innerHTML = 1;
+          break;
+        case "2":
+          page.innerHTML = data.page - 1;
+          break;
+        case "3":
+          page.innerHTML = data.page;
+          break;
+        case "4":
+          page.innerHTML = data.page +1;
+          break;
+        case "5":
+          page.innerHTML = data.page + 2;
+          break;
+        default:
+          break;
+      }
+      if(page.textContent == data.page){
+        document.querySelector('.page-active').classList.remove('page-active');
+        page.classList.add('page-active');
+      }
+    });
+  }
 }
 
 let selectGenre;
 //Select genre
 const genres = document.querySelectorAll(".genre__title");
+const pagesBlock = document.querySelector('.pages');
 genres.forEach((genre) => {
   genre.addEventListener("click", (e) => {
     selectGenre = genre.dataset.genre;
-    const apiSearchUrl = `${API_URL_SEARCH}page=1&limit=12&genres.name=${encodeURIComponent(
+    const apiSearchUrl = `${API_URL_SEARCH}page=1&limit=30&genres.name=${encodeURIComponent(
       selectGenre
     )}`;
+    pagesBlock.classList.add('pages--visible');
     getFilms(apiSearchUrl);
   });
 });
 
 //Select pages
 
-
-//function selectPage(page) {
-//  const apiSearchUrl = `${API_URL_SEARCH}page=${
-//    page.value
-//  }&limit=12&genres.name=${encodeURIComponent(selectGenre)}`;
-//  getFilms(apiSearchUrl);
-//}
-
-function selectPage (page){
-    const pages = document.querySelectorAll(".pagination__btn");
-    console.log(pages);
-    pages.forEach((page) => {
-      page.addEventListener("click", (e) => {
-        const apiSearchUrl = `${API_URL_SEARCH}page=${
-          page.value
-        }&limit=12&genres.name=${encodeURIComponent(selectGenre)}`;
-        getFilms(apiSearchUrl);
-      });
-    });
-}
+const pages = document.querySelectorAll(".pagination__btn");
+pages.forEach((page) => {
+  page.addEventListener("click", (e) => {
+    const apiSearchUrl = `${API_URL_SEARCH}page=${
+      page.textContent
+    }&limit=30&genres.name=${encodeURIComponent(selectGenre)}`;
+    getFilms(apiSearchUrl);
+  });
+});
