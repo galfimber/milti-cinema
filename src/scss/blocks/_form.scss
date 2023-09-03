@@ -6,9 +6,11 @@
   transform: translateY(120%);
   &__input {
     display: block;
-    padding: 5px;
+    padding: 5px 15px;
+    padding-right: 40px;
     width: 250px;
     height: 35px;
+    border-radius: 40px;
 
     background-color: #fff;
 
@@ -17,23 +19,77 @@
 
     transform: translateY(-100%);
     transition: transform 0.2s ease-in;
-    &.active{
-        transform: translateY(0);
+    &.active {
+      transform: translateY(0);
     }
   }
-  &__submit{
+  &__submit {
     cursor: pointer;
     position: absolute;
     top: 0;
     right: 0;
     width: 35px;
     height: 35px;
+    border-radius: 40px;
+    background-color: var(--btn-bg);
 
-    background-color: black;
+    font-size: 20px;
+
     transform: translateY(-100%);
     transition: transform 0.2s ease-in;
-    &.active{
-        transform: translateY(0);
+    &.active {
+      transform: translateY(0);
+    }
+  }
+}
+
+.form-footer {
+  position: relative;
+  width: fit-content;
+  margin-bottom: 80px;
+  &__input {
+    width: 1100px;
+    padding: 24px 60px;
+    padding-right: 320px;
+    border-radius: 40px;
+    background-color: #fff;
+
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--accent);
+    &::placeholder {
+      color: #c9c9c9;
+    }
+  }
+  &__btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 25px 53px;
+    border-radius: 40px;
+    background-color: var(--btn-bg);
+
+    font-size: 25px;
+    font-weight: 700;
+    color: var(--accent);
+
+    transition: box-shadow 0.2s ease-out;
+    &:hover {
+      -webkit-box-shadow: 0px 0px 13px 10px rgba(104, 108, 224, 0.25);
+      -moz-box-shadow: 0px 0px 13px 10px rgba(104, 108, 224, 0.25);
+      box-shadow: 0px 0px 13px 10px rgba(104, 108, 224, 0.25);
+    }
+  }
+  &__label {
+    margin-top: 20px;
+
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #5b5b5b;
+    span {
+      color: var(--page-bg-accent);
     }
   }
 }

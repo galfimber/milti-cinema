@@ -43,7 +43,7 @@ function showSearchResult(data) {
 
     filmEl.classList.add("film");
     filmEl.innerHTML = `
-          <a href="${filmLink}" class="movie__cover-inner">
+          <a href="${filmLink}" target="_blank" class="movie__cover-inner">
           <img src="${film.poster.url}" alt="${film.name}" class="movie__cover">
           <div class="movie__cover--darkened"></div>
       </a>

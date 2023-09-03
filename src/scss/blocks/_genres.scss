@@ -5,3 +5,9 @@
     align-items: center;
     gap: 80px;
 }
+.genre__title{
+    transition: color 0.2s ease-out;
+    &:hover{
+        color: var(--btn-bg);
+    }
+}

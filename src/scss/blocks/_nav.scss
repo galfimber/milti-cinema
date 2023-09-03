@@ -9,8 +9,11 @@
 
     font-size: 25px;
     font-weight: 500;
-    a {
-      color: var(--text-color);
+  }
+  &__link {
+    transition: color 0.2s ease-out;
+    &:hover {
+      color: var(--btn-bg);
     }
   }
   &__btns {
@@ -20,5 +23,11 @@
     gap: 35px;
 
     font-size: 35px;
+  }
+  &__btn{
+    transition: color 0.2s ease-out;
+    &:hover{
+      color: var(--btn-bg);
+    }
   }
 }

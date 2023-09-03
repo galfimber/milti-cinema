@@ -14,4 +14,8 @@
 .pagination__btn {
   width: 20px;
   font-size: 20px;
+  transition: color 0.2s ease-out;
+    &:hover{
+        color: var(--btn-bg);
+    }
 }

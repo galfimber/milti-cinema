@@ -8,7 +8,13 @@
   font-size: 25px;
   font-weight: 700;
   color: var(--accent);
-  &--main{
+  transition: box-shadow 0.2s ease-out;
+  &:hover {
+    -webkit-box-shadow: 0px 0px 13px 10px rgba(104, 108, 224, 0.25);
+    -moz-box-shadow: 0px 0px 13px 10px rgba(104, 108, 224, 0.25);
+    box-shadow: 0px 0px 13px 10px rgba(104, 108, 224, 0.25);
+  }
+  &--main {
     padding: 22px 56px;
     font-size: 30px;
   }

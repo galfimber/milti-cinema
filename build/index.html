@@ -21,24 +21,24 @@
       </a>
       <ul class="nav__list">
         <li>
-          <a href="./pages/films.html">Фильмы</a>
+          <a class="nav__link" href="./pages/films.html">Фильмы</a>
         </li>
         <li>
-          <a href="#!">Треды</a>
+          <a class="nav__link" href="#!">Треды</a>
         </li>
         <li>
-          <a href="#!">Новости</a>
+          <a class="nav__link" href="#!">Новости</a>
         </li>
       </ul>
       <div class="nav__btns">
         <form class="form">
           <input type="text" class="form__input">
-          <button class="form__submit">го</button>
+          <button class="form__submit"><i class="fa-solid fa-arrow-right"></i></button>
         </form>
-        <button class="btn-search">
+        <button class="nav__btn btn-search">
             <i class="fa-solid fa-magnifying-glass"></i>
         </button>
-        <button class="btn-login"><i class="fa-regular fa-user"></i></button>
+        <button class="nav__btn btn-login"><i class="fa-regular fa-user"></i></button>
       </div>
     </nav>
   </div>
@@ -68,7 +68,7 @@
         сделан для вас!
       </div>
       <div class="about__btn">
-        <a href="#!" class="btn btn--main">Посмотреть каталог фильмов</a>
+        <a href="./pages/films.html" class="btn btn--main">Посмотреть каталог фильмов</a>
       </div>
     </div>
   </div>
@@ -82,7 +82,7 @@
                 <h2 class="title-2">Самый популярный фильм на неделе</h2>
             </div>
             <div class="popular__more">
-                <a href="#!" class="link">Посмотреть остальные фильмы</a>
+                <a href="#!" class="popular__link link">Посмотреть остальные фильмы</a>
             </div>
         </div>
         <div class="popular__film">
@@ -108,9 +108,40 @@
 
 	</main>
     <footer class="footer">
-	<div class="container">
-		<h2>Footer</h2>
-	</div>
+  <div class="container">
+    <div class="footer__text">
+      <p>
+        Подпишитесь на нашу рассылку прямо сейчас, всего за <br /><span
+          >9.99$/мес</span
+        >, и будьте в курсе всех новостей, скидок на подписки и понижении цен на
+        фильмы.
+      </p>
+    </div>
+    <form class="form-footer">
+      <input type="text" class="form-footer__input" placeholder="Ваш email"/>
+	  <button type="submit" class="form-footer__btn">Подписаться</button>
+      <div class="form-footer__label">
+        Нажимая на кнопку “Подписаться”, вы принимаете правила
+        <span>пользовательского соглашения</span>
+      </div>
+    </form>
+    <nav class="nav">
+      <a href="./../index.html" class="logo">
+        <img src="./../img/logo.png" alt="" />
+      </a>
+      <ul class="nav__list">
+        <li>
+          <a class="nav__link" href="./pages/films.html">Фильмы</a>
+        </li>
+        <li>
+          <a class="nav__link" href="#!">Треды</a>
+        </li>
+        <li>
+          <a class="nav__link" href="#!">Новости</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </footer>
 
     <script src="./js/index.bundle.js"></script>

@@ -9,12 +9,12 @@
   width: 240px;
   height: fit-content;
   color: var(--text-color);
-  &:hover .movie__cover--darkened {
-    background-color: rgba(0, 0, 0, 0.25);
-  }
 }
 .movie__cover-inner {
   position: relative;
+  &:hover .movie__cover--darkened {
+    background-color: rgba(0, 0, 0, 0.25);
+  }
 }
 .movie__cover--darkened {
   position: absolute;
@@ -22,7 +22,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  transition: background-color 0.1s ease-in;
+  transition: background-color 0.2s ease-out;
 
 }
 .movie__info {
@@ -34,6 +34,12 @@
 }
 .movie__category{
   margin-bottom: 5px;
+}
+.movie__link{
+  color: var(--btn-bg);
+  &:hover{
+    text-decoration: underline;
+  }
 }
 .movie__average {
   position: absolute;
@@ -60,6 +66,4 @@
     border: 2px solid red;
   }
 }
-.movie__link{
-  color: var(--btn-bg);
-}
+
