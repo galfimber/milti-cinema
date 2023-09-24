@@ -9,7 +9,7 @@ const API_URL_POPULAR =
   "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=10&top10=1";
 const API_URL_SEARCH =
   "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=12&name=";
-getPopular(API_URL_POPULAR, "popular");
+//getPopular(API_URL_POPULAR, "popular");
 
 async function getPopular(url, key) {
   const resp = await fetch(url, {
@@ -43,23 +43,27 @@ function getClassByRate(vote) {
 }
 function showSearchResult(data) {
   const searchResult = document.querySelector(".films");
-  searchResult.innerHTML = '';
+  searchResult.innerHTML = "";
 
   data.docs.forEach((film) => {
     const filmEl = document.createElement("div");
-    let filmLink;
+    let filmLink = '#!';
+    let target = "";
 
-    film.watchability.items.forEach((source) => {
-      if (source.name == "Kinopoisk HD") {
-        filmEl.href = source.url;
-      } else {
-        filmEl.href = source.url;
-      }
-    });
+    if (film.watchability.items && film.watchability.items.length >= 1) {
+      target = 'target="_blank"';
+      film.watchability.items.forEach((source) => {
+        if (source.name == "Kinopoisk HD") {
+          filmLink = source.url;
+        } else {
+          filmLink = source.url;
+        }
+      });
+    }
 
     filmEl.classList.add("film");
     filmEl.innerHTML = `
-        <a href="${filmLink}" target="_blank" class="movie__cover-inner">
+        <a href="${filmLink}" ${target} class="movie__cover-inner">
         <img src="${film.poster.url}" alt="${film.name}" class="movie__cover">
         <div class="movie__cover--darkened"></div>
     </a>
@@ -68,7 +72,9 @@ function showSearchResult(data) {
         <div class="movie__category">${film.genres.map(
           (genre) => ` ${genre.name}`
         )}</div>
-        <a class="movie__link" href="https://www.ggkinopoisk.ru/film/${film.id}/" target=_blank>Смотреть бесплатно</a>
+        <a class="movie__link" href="https://www.ggkinopoisk.ru/film/${
+          film.id
+        }/" target=_blank>Смотреть бесплатно</a>
         <div class="movie__average movie__average--${getClassByRate(
           film.rating.imdb
         )}">${film.rating.imdb}</div>
