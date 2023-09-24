@@ -1,4 +1,4 @@
-function FilmInfo(film) {
+export default function FilmInfo(film) {
   const popup = document.querySelector(".popup");
   const popupClose = document.querySelector('.popup__close');
   popupClose.addEventListener('click', (e) => {
@@ -35,4 +35,4 @@ function FilmInfo(film) {
   }
   description.textContent = film.description;
 }
-export default FilmInfo;
+

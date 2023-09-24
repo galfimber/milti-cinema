@@ -1,6 +1,7 @@
 //MobileNav
 import mobileNav from "./modules/mobile-nav.js";
 //mobileNav();
+import FilmInfo from "./modules/popup.js";
 
 
 //Kinopoisk Api
@@ -186,7 +187,6 @@ search.addEventListener("click", function () {
 });
 
 //Show popup
-import FilmInfo from "./modules/popup.js";
 function getAboutFilms(data) {
   const aboutFilms = document.querySelectorAll(".movie__cover-inner");
   aboutFilms.forEach((aboutFilm) => {
