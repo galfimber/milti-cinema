@@ -1,13 +1,23 @@
-.genres{
-    padding: 60px 70px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 80px;
+.genres {
+  padding: 60px 70px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 80px;
 }
-.genre__title{
-    transition: color 0.2s ease-out;
-    &:hover{
-        color: var(--btn-bg);
-    }
+.genre__title {
+  transition: color 0.2s ease-out;
+  &:hover {
+    color: var(--btn-bg);
+  }
+}
+@media (max-width: 1130px) {
+  .genres {
+    gap: 28px;
+  }
+}
+@media (max-width: 730px) {
+  .genres {
+    padding: 10px 10px;
+  }
 }

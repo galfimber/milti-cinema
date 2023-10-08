@@ -19,3 +19,11 @@
     font-size: 30px;
   }
 }
+@media (max-width: 650px) {
+  .btn{
+    &--main {
+      padding: 22px 35px;
+      font-size: 25px;
+    }
+  }
+}

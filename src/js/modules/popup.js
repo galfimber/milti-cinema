@@ -14,10 +14,12 @@ export default function FilmInfo(film) {
   );
   allCountries = allCountries.slice(0, -2);
   let allActros = "";
-  for (let i = 0; i < 3; i++) {
-    allActros += `${film.persons[i].name}, `;
+  if (film.persons.length > 0) {
+    for (let i = 0; i < 3; i++) {
+      allActros += `${film.persons[i].name}, `;
+    }
+    allActros = allActros.slice(0, -2);
   }
-  allActros = allActros.slice(0, -2);
 
   let trailer = "";
   if (film.videos && film.videos.trailers.length > 0) {
@@ -42,7 +44,7 @@ export default function FilmInfo(film) {
   <div class="popup__body">
     <div class="popup__header">
       <div class="popup__title"><h2 class="title-2">${film.name}</h2></div>
-      <a href="#" class="popup__close"><i class="fa-solid fa-xmark"></i></a>
+      <button class="popup__close"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="popup__content">
       ${trailer}
@@ -60,7 +62,7 @@ export default function FilmInfo(film) {
 
   const link = [];
   const linkLogo = [];
-  if (film.watchability && film.watchability.items.length > 0) {
+  if (film.watchability && film.watchability.items != null) {
     for (let i = 0; i < film.watchability.items.length; i++) {
       linkLogo[i] = film.watchability.items[i].logo.url;
       link[i] = film.watchability.items[i].url;
@@ -94,7 +96,6 @@ export default function FilmInfo(film) {
       popup.classList.remove("popup--open");
       document.body.classList.remove("no-scroll"); // то закрываем окно навигации, удаляя активный класс
       popup.innerHTML = "";
-      cinemaList.innerHTML = "";
     }
   });
 

@@ -16,3 +16,14 @@
     width: fit-content;
   }
 }
+@media (max-width: 730px) {
+  .about{
+    &__text{
+      font-size: 20px;
+    font-weight: 400;
+    }
+    &__btn {
+      width: auto;
+    }
+  }
+}

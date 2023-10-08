@@ -60,7 +60,7 @@
     color: var(--accent);
     &::placeholder {
       color: #c9c9c9;
-    }
+    }    
   }
   &__btn {
     position: absolute;
@@ -91,5 +91,18 @@
     span {
       color: var(--page-bg-accent);
     }
+  }
+}
+@media (max-width: 1130px) {
+  .form-footer{
+    width: 100%;
+    &__input {
+      width: 100%; 
+    }
+  }
+}
+@media (max-width: 730px) {
+  .form{
+    transform: translateY(360%);
   }
 }

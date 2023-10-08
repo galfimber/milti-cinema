@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
   }
   &__film {
     width: max-content;
@@ -29,10 +30,27 @@
   &__btn {
     width: 100%;
   }
-  &__link{
+  &__link {
     transition: color 0.2s ease-out;
-    &:hover{
+    &:hover {
       color: var(--btn-bg);
+    }
+  }
+}
+@media (max-width: 730px) {
+  .popular {
+    &__header {
+flex-wrap: wrap;
+    }
+    &__film {
+      width: auto;
+      padding: 30px 45px;
+    }
+    &__img {
+      img {
+        border-radius: 15px;
+        max-width: 280px;
+      }
     }
   }
 }
