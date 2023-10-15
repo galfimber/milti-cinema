@@ -1,0 +1,17 @@
+.not-found {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  a.not-found__link {
+    font-size: 25px;
+    text-decoration: underline;
+    &:hover {
+      transition: color 0.2s ease-out;
+      &:hover {
+        color: var(--btn-bg);
+      }
+    }
+  }
+}

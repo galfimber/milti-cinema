@@ -15,24 +15,14 @@
     <title>Multi Cinema</title>
     <link rel="stylesheet" href="./css/main.css" />
     <link rel="stylesheet" href="./fonts/Gilroy/stylesheet.css" />
-    <script
-      src="https://kit.fontawesome.com/d0e21689c0.js"
-      crossorigin="anonymous"
-    ></script>
     <meta property="og:title" content="Multi Cinema" />
     <meta
       property="og:description"
       content="Поиск и просмотров фильмов онлайн"
     />
-    <meta
-      property="og:image"
-      content="./img/OpenGraph.png"
-    />
+    <meta property="og:image" content="./img/OpenGraph.png" />
     <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content="http://mutli-cinema.ru"
-    />
+    <meta property="og:url" content="http://mutli-cinema.ru" />
     <link rel="icon" href="./img/favicon.ico?ver=a8970" type="image/x-icon" />
     <link rel="apple-touch-icon" href="./img/touch-icon-iphone.png?ver=a8970" />
     <link
@@ -70,14 +60,25 @@
       name="msapplication-square310x310logo"
       content="/touch-w8-largetile.png?ver=a8970"
     />
+    <script
+      src="https://kit.fontawesome.com/d0e21689c0.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    @@include('blocks/header.html')
+    @@include('./blocks/header.html')
     <main>
-      @@include('blocks/about.html') @@include('blocks/popular.html')
-      @@include('blocks/search-result.html')
+        <section class="section">
+            <div class="container">
+                <div class="not-found">
+                    <img src="./img/404.png" alt="">
+                    <h2 class="title-2">Страница не найдена</h2>
+                    <a class="not-found__link" href="./index.html">Вернитесь на Главную</a>
+                </div>
+            </div>
+        </section>
     </main>
-    @@include('blocks/footer.html') @@include('blocks/popup.html')
-    <script src="./js/index.bundle.js"></script>
+    @@include('./blocks/footer.html') @@include('./blocks/popup.html')
+    <script src="./js/films.bundle.js"></script>
   </body>
 </html>
