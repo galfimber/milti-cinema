@@ -1,7 +1,11 @@
 export default function FilmInfo(film) {
   const popup = document.querySelector(".popup");
   popup.classList.add("popup--open");
-  document.body.classList.add("no-scroll");
+  const body = document.body;
+  const scrollWidth = innerWidth - body.clientWidth;
+  body.classList.add("no-scroll");
+  body.setAttribute("style", "padding-right:" + scrollWidth + "px");
+
 
   popup.innerHTML = "";
 
@@ -41,28 +45,30 @@ export default function FilmInfo(film) {
   }
 
   popup.innerHTML = `
-  <div class="popup__body">
+  <div class="popup__wrapper">
     <div class="popup__header">
       <div class="popup__title"><h2 class="title-2">${film.name}</h2></div>
       <button class="popup__close"><i class="fa-solid fa-xmark"></i></button>
     </div>
-    <div class="popup__content">
-      ${trailer}
-      <div class="film__info">
-        <div class="film__watch"></div>
-        <div class="film__genre">${allGenres}</div>
-        <div class="film__countries">${allCountries}</div>
-        <div class="film__year">${film.year}</div>
-        <div class="film__length">${filmLength}</div>
-        <div class="film__actors">${allActros}</div>
-        <div class="film__description">${description}</div>
+    <div class="popup__body">
+      <div class="popup__content">
+        ${trailer}
+        <div class="film__info">
+          <div class="film__watch"></div>
+          <div class="film__genre">${allGenres}</div>
+          <div class="film__countries">${allCountries}</div>
+          <div class="film__year">${film.year}</div>
+          <div class="film__length">${filmLength}</div>
+          <div class="film__actors">${allActros}</div>
+          <div class="film__description">${description}</div>
+        </div>
       </div>
     </div>
   </div>`;
 
   const link = [];
   const linkLogo = [];
-  if (film.watchability && film.watchability.items != null) {
+  if (film.watchability.items.length > 0 && film.watchability.items != null) {
     for (let i = 0; i < film.watchability.items.length; i++) {
       linkLogo[i] = film.watchability.items[i].logo.url;
       link[i] = film.watchability.items[i].url;
@@ -95,9 +101,12 @@ export default function FilmInfo(film) {
       e.preventDefault();
       popup.classList.remove("popup--open");
       document.body.classList.remove("no-scroll"); // то закрываем окно навигации, удаляя активный класс
+      body.style.removeProperty("padding-right");
       popup.innerHTML = "";
     }
   });
+
+
 
   //const name = document
   //  .querySelector(".popup__title")
