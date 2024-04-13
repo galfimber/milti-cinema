@@ -12,12 +12,14 @@ const API_URL_SEARCH =
   "https://api.kinopoisk.dev/v1.3/movie?selectFields=name&selectFields=videos.trailers.url&selectFields=description&selectFields=poster&selectFields=movieLength&selectFields=persons.name&selectFields=rating&selectFields=watchability&selectFields=year&selectFields=genres&selectFields=id&selectFields=countries.name&";
 
 async function getFilms(url) {
-  const resp = await fetch(url, {
+  const options = {
+    method: "GET",
     headers: {
-      "Content-Type": "application/json",
+      accept: "application/json",
       "X-API-KEY": API_KEY,
     },
-  });
+  };
+  const resp = await fetch(url, options);
   const data = await resp.json();
   console.log(data);
   showSearchResult(data);

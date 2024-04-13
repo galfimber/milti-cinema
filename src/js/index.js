@@ -7,18 +7,20 @@ import showSearchResult from "./modules/showSearchResult.js";
 //Show popular film
 const API_KEY = "84S4SNX-Y084WMK-K7FV73W-8G8P6MH";
 const API_URL_POPULAR =
-  "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=10&top10=1";
+  "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=10&lists=popular-series&selectFields=watchability&selectFields=poster";
 const API_URL_SEARCH =
-  "https://api.kinopoisk.dev/v1.3/movie?selectFields=name&selectFields=videos.trailers.url&selectFields=description&selectFields=poster&selectFields=movieLength&selectFields=persons.name&selectFields=rating&selectFields=watchability&selectFields=year&selectFields=genres&selectFields=id&selectFields=countries.name&";
+  "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=10&selectFields=id&selectFields=countries&selectFields=genres&selectFields=year&selectFields=watchability&selectFields=rating&selectFields=persons&selectFields=movieLength&selectFields=poster&selectFields=description&selectFields=videos&selectFields=name&";
 getPopular(API_URL_POPULAR, "popular");
 
 async function getPopular(url, key) {
-  const resp = await fetch(url, {
+  const options = {
+    method: "GET",
     headers: {
-      "Content-Type": "application/json",
+      accept: "application/json",
       "X-API-KEY": API_KEY,
     },
-  });
+  };
+  const resp = await fetch(url, options);
   const data = await resp.json();
   console.log(data);
   if (key == "search") {
@@ -31,10 +33,12 @@ async function getPopular(url, key) {
 function showPopular(data) {
   const popularImg = document.getElementById("popular-img");
   const popularLink = document.getElementById("popular-link");
+  const num = Math.floor(Math.random() * (10 - 0) + 0);
+  console.log(num);
 
-  popularImg.src = data.docs[0].poster.url;
-  if (data.docs[0].watchability.items != null) {
-    popularLink.href = data.docs[0].watchability.items[0].url;
+  popularImg.src = data.docs[num].poster.url;
+  if (data.docs[num].watchability.items.length > 0) {
+    popularLink.href = data.docs[num].watchability.items[0].url;
   }
 }
 

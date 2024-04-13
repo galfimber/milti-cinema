@@ -94,7 +94,7 @@ export default function FilmInfo(film) {
     // при клике в любом месте окна браузера
     const target = e.target; // находим элемент, на котором был клик
     if (
-      (!target.closest(".popup__body") && target.closest(".popup")) ||
+      (!target.closest(".popup__wrapper") && target.closest(".popup")) ||
       target.closest(".popup__close")
     ) {
       // если этот элемент или его родительские элементы не окно навигации и не кнопка
