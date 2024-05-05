@@ -1,16 +1,18 @@
 //MobileNav
 import mobileNav from "./modules/mobile-nav.js";
 //mobileNav();
-//import FilmInfo from "./modules/popup.js";
+import FilmInfo from "./modules/popup.js";
 import showSearchResult from "./modules/showSearchResult.js";
-
+import addWatchLater from "./modules/addWatchLater.js";
 
 //Kinopoisk Api
 //Show popular film
 const API_KEY = "84S4SNX-Y084WMK-K7FV73W-8G8P6MH";
 const API_URL_SEARCH =
-  "https://api.kinopoisk.dev/v1.3/movie?selectFields=name&selectFields=videos.trailers.url&selectFields=description&selectFields=poster&selectFields=movieLength&selectFields=persons.name&selectFields=rating&selectFields=watchability&selectFields=year&selectFields=genres&selectFields=id&selectFields=countries.name&";
+  "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=30&selectFields=name&selectFields=videos&selectFields=description&selectFields=poster&selectFields=movieLength&selectFields=persons.name&selectFields=rating&selectFields=watchability&selectFields=year&selectFields=genres&selectFields=id&selectFields=countries.name";
 
+const API_URL_BASE = "https://api.kinopoisk.dev/v1.3/movie?";
+const API_URL_FIELD = "&selectFields=name&selectFields=videos&selectFields=description&selectFields=poster&selectFields=movieLength&selectFields=persons.name&selectFields=rating&selectFields=watchability&selectFields=year&selectFields=genres&selectFields=id&selectFields=countries.name"
 async function getFilms(url) {
   const options = {
     method: "GET",
@@ -21,11 +23,10 @@ async function getFilms(url) {
   };
   const resp = await fetch(url, options);
   const data = await resp.json();
-  console.log(data);
+  // console.log(data);
   showSearchResult(data);
+  checkAddWatchLater(data.docs);
 }
-
-
 
 //Select genre
 let selectGenre;
@@ -34,7 +35,7 @@ const pagesBlock = document.querySelector(".pages");
 genres.forEach((genre) => {
   genre.addEventListener("click", (e) => {
     selectGenre = genre.dataset.genre;
-    const apiSearchUrl = `${API_URL_SEARCH}page=1&limit=30&genres.name=${encodeURIComponent(
+    const apiSearchUrl = `${API_URL_SEARCH}&genres.name=${encodeURIComponent(
       selectGenre
     )}`;
     pagesBlock.classList.add("pages--visible");
@@ -47,9 +48,9 @@ genres.forEach((genre) => {
 const pages = document.querySelectorAll(".pagination__btn");
 pages.forEach((page) => {
   page.addEventListener("click", (e) => {
-    const apiSearchUrl = `${API_URL_SEARCH}page=${
+    const apiSearchUrl = `${API_URL_BASE}page=${
       page.textContent
-    }&limit=30&genres.name=${encodeURIComponent(selectGenre)}`;
+    }&limit=30&genres.name=${encodeURIComponent(selectGenre)}${API_URL_FIELD}`;
     search_Result.scrollIntoView(true);
     getFilms(apiSearchUrl);
   });
@@ -63,7 +64,7 @@ const search_Result = document.querySelector(".films");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const apiSearchUrl = `${API_URL_SEARCH}page=1&limit=30&name=${inputSearch.value}`;
+  const apiSearchUrl = `${API_URL_SEARCH}&name=${inputSearch.value}`;
   if (inputSearch.value) {
     search_Result.scrollIntoView(true);
     getFilms(apiSearchUrl, "search");
@@ -85,5 +86,17 @@ search.addEventListener("click", function () {
   }
 });
 
-
-
+//   Add watch later
+const checkAddWatchLater = (data) => {
+  const likeFilms = document.querySelectorAll(".mark");
+  likeFilms.forEach((likeFilm) => {
+    likeFilm.addEventListener("click", (e) => {
+      e.preventDefault();
+      // console.log(data[likeFilm.dataset.id]);
+      addWatchLater(
+        data[likeFilm.dataset.id],
+        likeFilm.querySelector(".mark__icon")
+      );
+    });
+  });
+};

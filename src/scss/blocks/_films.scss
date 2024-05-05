@@ -12,8 +12,19 @@
 }
 .movie__cover-inner {
   position: relative;
-  &:hover .movie__cover--darkened {
-    background-color: rgba(0, 0, 0, 0.25);
+  // &:hover .movie__cover--darkened {
+  //   background-color: rgba(0, 0, 0, 0.25);
+  // }
+  &:hover {
+    .movie__cover--darkened {
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+    .mark__icon {
+      color: rgb(165, 165, 165);
+    }
+    .mark__icon--active {
+      color: red;
+    }
   }
 }
 .movie__cover--darkened {
@@ -23,7 +34,6 @@
   width: 100%;
   height: 100%;
   transition: background-color 0.2s ease-out;
-
 }
 .movie__info {
   padding: 5px;
@@ -32,12 +42,12 @@
   margin-bottom: 5px;
   font-size: 22px;
 }
-.movie__category{
+.movie__category {
   margin-bottom: 5px;
 }
-.movie__link{
+.movie__link {
   color: var(--btn-bg);
-  &:hover{
+  &:hover {
     text-decoration: underline;
   }
 }
@@ -56,14 +66,40 @@
   border-radius: 50%;
 
   font-size: 20px;
-  &--green{
+  &--green {
     border: 2px solid green;
   }
-  &--orange{
+  &--orange {
     border: 2px solid orange;
   }
-  &--red{
+  &--red {
     border: 2px solid red;
   }
 }
+.mark {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px;
 
+  background-color: transparent;
+  border-radius: 50%;
+  &__icon {
+    font-size: 30px;
+    color: transparent;
+    transition: color 0.2s ease-in;
+    &--active {
+      color: red;
+    }
+  }
+  &:hover {
+    .mark__icon {
+      color: rgb(255, 121, 121);
+    }
+  }
+}

@@ -3,6 +3,7 @@ const config = {
 	entry: {
 		index: './src/js/index.js',
 		films: './src/js/films.js',
+		likes: './src/js/likes.js',
 		// about: './src/js/about.js',
 	},
 	output: {

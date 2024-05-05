@@ -12,12 +12,25 @@ export default function showSearchResult(data) {
   searchResult.innerHTML = "";
 
   let index = -1;
-  data.docs.forEach(function(film){
-    if (film.poster == null || film.poster.url == null || film.name == null || film.genres.length == 0 || !film.genres) {
-        index++;
-        return;
+  data.docs.forEach(function (film) {
+    if (
+      film.poster == null ||
+      film.poster.url == null ||
+      film.name == null ||
+      film.genres.length == 0 ||
+      !film.genres
+    ) {
+      index++;
+      return;
     }
     index++;
+    let active = "";
+    JSON.parse(localStorage.getItem("films")).forEach((filmMark) => {
+      if (filmMark === film.id) {
+        active = "mark__icon--active";
+      }
+    });
+
     const filmEl = document.createElement("div");
 
     filmEl.classList.add("film");
@@ -39,8 +52,12 @@ export default function showSearchResult(data) {
             <div class="movie__average movie__average--${getClassByRate(
               film.rating.imdb
             )}">${film.rating.imdb}</div>
+            <button data-id="${index}" data-film="${
+      film.id
+    }" class="mark"><i class="fa-solid fa-heart mark__icon ${active}"></i></button>
         </div>
             `;
+
     searchResult.appendChild(filmEl);
   });
   const pages = document.querySelectorAll(".pagination__btn");

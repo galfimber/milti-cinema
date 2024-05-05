@@ -6,7 +6,6 @@ export default function FilmInfo(film) {
   body.classList.add("no-scroll");
   body.setAttribute("style", "padding-right:" + scrollWidth + "px");
 
-
   popup.innerHTML = "";
 
   let allGenres = "";
@@ -26,13 +25,25 @@ export default function FilmInfo(film) {
   }
 
   let trailer = "";
-  if (film.videos && film.videos.trailers.length > 0) {
-    //trailer = film.videos.trailers[0].url;
-    trailer = `<iframe allowfullscreen class="film__trailer"src="${film.videos.trailers[0].url}"></iframe>`;
-  } else {
-    //trailer = film.poster.url;
-    trailer = `<img class="film__trailer" src="${film.poster.url}" alt="poster">`;
-  }
+  trailer = `<div class="kinobox_player film__trailer"></div>`;
+  // if (film.hasOwnProperty("videos") && film.videos.trailers.length > 0) {
+  //   //trailer = film.videos.trailers[0].url;
+  // trailer = `<iframe allowfullscreen class="film__trailer"src="${film.videos.trailers[0].url}"></iframe>`;
+  // } else {
+  //   //trailer = film.poster.url;
+  //   trailer = `<img class="film__trailer" src="${film.poster.url}" alt="poster">`;
+  // }
+
+  // async function getFilm(url) {
+  //   const resp = await fetch(url);
+  //   const data = await resp.json();
+  //   console.log(data[data.length - 1].iframeUrl);
+  //   trailer = `<iframe allowfullscreen frameborder="0" class="film__trailer"src="${
+  //     data[data.length - 1].iframeUrl
+  //   }"></iframe>`;
+  // }
+  // getFilm(`https://kinobox.tv/api/players?kinopoisk=${film.id}`);
+
   let filmLength = "";
   if (film.movieLength != null) {
     filmLength = `${film.movieLength.toString()} мин.`;
@@ -51,7 +62,7 @@ export default function FilmInfo(film) {
       <button class="popup__close"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="popup__body">
-      <div class="popup__content">
+      <div class="popup__content ">
         ${trailer}
         <div class="film__info">
           <div class="film__watch"></div>
@@ -90,6 +101,7 @@ export default function FilmInfo(film) {
   //popup.classList.remove("popup--open");
   //document.body.classList.remove("no-scroll");
   //});
+  kbox(".kinobox_player", { search: { kinopoisk: film.id } });
   window.addEventListener("click", (e) => {
     // при клике в любом месте окна браузера
     const target = e.target; // находим элемент, на котором был клик
@@ -105,8 +117,6 @@ export default function FilmInfo(film) {
       popup.innerHTML = "";
     }
   });
-
-
 
   //const name = document
   //  .querySelector(".popup__title")
