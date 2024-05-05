@@ -41,8 +41,10 @@ async function getPopular(url, key) {
   // console.log(data);
   if (key == "search") {
     showSearchResult(data);
+    checkAddWatchLater(data.docs);
   } else {
     showPopular(data);
+    checkAddWatchLater(data.docs);
   }
 }
 

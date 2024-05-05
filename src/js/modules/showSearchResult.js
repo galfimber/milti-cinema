@@ -25,11 +25,13 @@ export default function showSearchResult(data) {
     }
     index++;
     let active = "";
-    JSON.parse(localStorage.getItem("films")).forEach((filmMark) => {
-      if (filmMark === film.id) {
-        active = "mark__icon--active";
-      }
-    });
+    if (JSON.parse(localStorage.getItem("films")) !== null) {
+      JSON.parse(localStorage.getItem("films")).forEach((filmMark) => {
+        if (filmMark === film.id) {
+          active = "mark__icon--active";
+        }
+      });
+    }
 
     const filmEl = document.createElement("div");
 
