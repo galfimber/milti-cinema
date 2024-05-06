@@ -2,7 +2,7 @@
 import mobileNav from "./modules/mobile-nav.js";
 //mobileNav();
 import showSearchResult from "./modules/showSearchResult.js";
-// import showWatchLater from "./modules/showWatchLater.js";
+import addWatchLater from "./modules/addWatchLater.js";
 
 //Kinopoisk Api
 //Add userId
@@ -91,3 +91,17 @@ search.addEventListener("click", function () {
   }
 });
 
+//   Add watch later
+const checkAddWatchLater = (data) => {
+  const likeFilms = document.querySelectorAll(".mark");
+  likeFilms.forEach((likeFilm) => {
+    likeFilm.addEventListener("click", (e) => {
+      e.preventDefault();
+      // console.log(data[likeFilm.dataset.id]);
+      addWatchLater(
+        data[likeFilm.dataset.id],
+        likeFilm.querySelector(".mark__icon")
+      );
+    });
+  });
+};

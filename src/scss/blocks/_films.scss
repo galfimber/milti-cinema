@@ -9,21 +9,20 @@
   width: 240px;
   height: fit-content;
   color: var(--text-color);
-}
-.movie__cover-inner {
-  position: relative;
-  // &:hover .movie__cover--darkened {
-  //   background-color: rgba(0, 0, 0, 0.25);
-  // }
   &:hover {
-    .movie__cover--darkened {
-      background-color: rgba(0, 0, 0, 0.25);
-    }
     .mark__icon {
       color: rgb(165, 165, 165);
     }
     .mark__icon--active {
       color: red;
+    }
+  }
+}
+.movie__cover-inner {
+  position: relative;
+  &:hover {
+    .movie__cover--darkened {
+      background-color: rgba(0, 0, 0, 0.25);
     }
   }
 }
