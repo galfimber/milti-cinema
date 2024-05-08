@@ -22,16 +22,15 @@ async function getFilms(url) {
 //Show watch later
 const showWatchLater = () => {
   let searchFilms = "";
-
-  JSON.parse(localStorage.getItem("films")).forEach((film) => {
-    searchFilms += `&id=${film}`;
-  });
-  if (searchFilms !== "") {
+  if (JSON.parse(localStorage.getItem("films")).length !== 0) {
+    JSON.parse(localStorage.getItem("films")).forEach((film) => {
+      searchFilms += `&id=${film}`;
+    });
     const apiSearchUrl = `${API_URL_SEARCH}${searchFilms}`;
     getFilms(apiSearchUrl);
   } else {
     const searchResult = document.querySelector(".films");
-    searchResult.innerHTML = "Нечего смотреть...";
+    searchResult.innerHTML = `<div class="no__film" style="font-size:30px;">Нечего смотреть...</div>`;
   }
 };
 
