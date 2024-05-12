@@ -22,7 +22,10 @@ async function getFilms(url) {
 //Show watch later
 const showWatchLater = () => {
   let searchFilms = "";
-  if (JSON.parse(localStorage.getItem("films")).length !== 0) {
+  if (
+    JSON.parse(localStorage.getItem("films")) !== null &&
+    JSON.parse(localStorage.getItem("films")).length > 0
+  ) {
     JSON.parse(localStorage.getItem("films")).forEach((film) => {
       searchFilms += `&id=${film}`;
     });
@@ -41,6 +44,11 @@ const checkAddWatchLater = (data) => {
     likeFilm.addEventListener("click", (e) => {
       e.preventDefault();
       likeFilm.closest(".film").remove();
+
+      const searchResult = document.querySelector(".films");
+      if (searchResult.children.length < 1) {
+        searchResult.innerHTML = `<div class="no__film" style="font-size:30px;">Нечего смотреть...</div>`;
+      }
 
       addWatchLater(
         data[likeFilm.dataset.id],

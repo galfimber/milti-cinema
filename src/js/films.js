@@ -1,7 +1,6 @@
 //MobileNav
 import mobileNav from "./modules/mobile-nav.js";
 //mobileNav();
-import FilmInfo from "./modules/popup.js";
 import showSearchResult from "./modules/showSearchResult.js";
 import addWatchLater from "./modules/addWatchLater.js";
 

@@ -39,8 +39,9 @@
 }
 @media (max-width: 730px) {
   .popular {
+    padding: 30px;
     &__header {
-flex-wrap: wrap;
+      flex-wrap: wrap;
     }
     &__film {
       width: auto;

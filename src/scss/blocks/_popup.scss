@@ -64,6 +64,11 @@
   .popup {
     &__wrapper {
       max-width: 720px;
+      padding: 15px;
+      padding-right: 10px;
+    }
+    &__body {
+      padding-right: 5px;
     }
   }
 }
