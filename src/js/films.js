@@ -22,7 +22,6 @@ async function getFilms(url) {
   };
   const resp = await fetch(url, options);
   const data = await resp.json();
-  // console.log(data);
   showSearchResult(data);
   checkAddWatchLater(data.docs);
 }
@@ -66,7 +65,7 @@ form.addEventListener("submit", (e) => {
   const apiSearchUrl = `${API_URL_SEARCH}&name=${inputSearch.value}`;
   if (inputSearch.value) {
     search_Result.scrollIntoView(true);
-    getFilms(apiSearchUrl, "search");
+    getFilms(apiSearchUrl);
     inputSearch.value = "";
   }
 });
@@ -91,7 +90,6 @@ const checkAddWatchLater = (data) => {
   likeFilms.forEach((likeFilm) => {
     likeFilm.addEventListener("click", (e) => {
       e.preventDefault();
-      // console.log(data[likeFilm.dataset.id]);
       addWatchLater(
         data[likeFilm.dataset.id],
         likeFilm.querySelector(".mark__icon")

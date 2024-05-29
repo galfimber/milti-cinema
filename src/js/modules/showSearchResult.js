@@ -48,9 +48,6 @@ export default function showSearchResult(data) {
             <div class="movie__category">${film.genres.map(
               (genre) => ` ${genre.name}`
             )}</div>
-            <a class="movie__link" href="https://www.kinopoisk.vip/film/${
-              film.id
-            }/" target='_blank'>Смотреть бесплатно</a>
             <div class="movie__average movie__average--${getClassByRate(
               film.rating.imdb
             )}">${film.rating.imdb}</div>

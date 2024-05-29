@@ -5,19 +5,6 @@ import showSearchResult from "./modules/showSearchResult.js";
 import addWatchLater from "./modules/addWatchLater.js";
 
 //Kinopoisk Api
-//Add userId
-// const jsonData = require("./modules/watchLater.json");
-
-// let counter = 0;
-// for (let key in jsonData) {
-//   counter++;
-// }
-
-// if (!window.localStorage.getItem("id")) {
-//   window.localStorage.setItem("id", `user_${counter}`);
-// }
-// const name = window.localStorage.getItem("id");
-// console.log(name);
 
 //Show popular film
 const API_KEY = "84S4SNX-Y084WMK-K7FV73W-8G8P6MH";
@@ -38,7 +25,7 @@ async function getPopular(url, key) {
   };
   const resp = await fetch(url, options);
   const data = await resp.json();
-  // console.log(data);
+
   if (key == "search") {
     showSearchResult(data);
     checkAddWatchLater(data.docs);
@@ -52,7 +39,6 @@ function showPopular(data) {
   const popularImg = document.getElementById("popular-img");
   const popularLink = document.getElementById("popular-link");
   const num = Math.floor(Math.random() * (10 - 0) + 0);
-  // console.log(num);
 
   popularImg.src = data.docs[num].poster.url;
   if (data.docs[num].watchability.items.length > 0) {
@@ -71,7 +57,6 @@ form.addEventListener("submit", (e) => {
   const apiSearchUrl = `${API_URL_SEARCH}&name=${inputSearch.value}`;
   if (inputSearch.value) {
     search_Result.scrollIntoView(true);
-    // console.log(apiSearchUrl);
     getPopular(apiSearchUrl, "search");
     inputSearch.value = "";
   }
@@ -97,7 +82,6 @@ const checkAddWatchLater = (data) => {
   likeFilms.forEach((likeFilm) => {
     likeFilm.addEventListener("click", (e) => {
       e.preventDefault();
-      // console.log(data[likeFilm.dataset.id]);
       addWatchLater(
         data[likeFilm.dataset.id],
         likeFilm.querySelector(".mark__icon")
