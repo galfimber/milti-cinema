@@ -11,7 +11,8 @@ const API_URL_SEARCH =
   "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=30&selectFields=name&selectFields=videos&selectFields=description&selectFields=poster&selectFields=movieLength&selectFields=persons.name&selectFields=rating&selectFields=watchability&selectFields=year&selectFields=genres&selectFields=id&selectFields=countries.name";
 
 const API_URL_BASE = "https://api.kinopoisk.dev/v1.3/movie?";
-const API_URL_FIELD = "&selectFields=name&selectFields=videos&selectFields=description&selectFields=poster&selectFields=movieLength&selectFields=persons.name&selectFields=rating&selectFields=watchability&selectFields=year&selectFields=genres&selectFields=id&selectFields=countries.name"
+const API_URL_FIELD =
+  "&selectFields=name&selectFields=videos&selectFields=description&selectFields=poster&selectFields=movieLength&selectFields=persons.name&selectFields=rating&selectFields=watchability&selectFields=year&selectFields=genres&selectFields=id&selectFields=countries.name";
 async function getFilms(url) {
   const options = {
     method: "GET",
@@ -27,28 +28,32 @@ async function getFilms(url) {
 }
 
 //Select genre
-let selectGenre;
+let selectGenre = "";
+let type = "";
 const genres = document.querySelectorAll(".genre__title");
 const pagesBlock = document.querySelector(".pages");
 genres.forEach((genre) => {
   genre.addEventListener("click", (e) => {
     selectGenre = genre.dataset.genre;
-    const apiSearchUrl = `${API_URL_SEARCH}&genres.name=${encodeURIComponent(
-      selectGenre
-    )}`;
+    let apiSearchUrl = `${API_URL_SEARCH}`;
+    if (selectGenre === "сериал") {
+      type = "&isSeries=true";
+    } else if (selectGenre === "мультфильм") {
+      type = `&type=cartoon&genres.name=${encodeURIComponent(selectGenre)}`;
+    } else {
+      type = `&type=movie&genres.name=${encodeURIComponent(selectGenre)}`;
+    }
+    apiSearchUrl += type;
     pagesBlock.classList.add("pages--visible");
     getFilms(apiSearchUrl);
   });
 });
 
 //Select pages
-
 const pages = document.querySelectorAll(".pagination__btn");
 pages.forEach((page) => {
   page.addEventListener("click", (e) => {
-    const apiSearchUrl = `${API_URL_BASE}page=${
-      page.textContent
-    }&limit=30&genres.name=${encodeURIComponent(selectGenre)}${API_URL_FIELD}`;
+    const apiSearchUrl = `${API_URL_BASE}page=${page.textContent}&limit=30${type}${API_URL_FIELD}`;
     search_Result.scrollIntoView(true);
     getFilms(apiSearchUrl);
   });
@@ -57,7 +62,7 @@ pages.forEach((page) => {
 //Search film
 const form = document.querySelector(".form");
 const inputSearch = document.querySelector(".form__input");
-const search_Result = document.querySelector(".films");
+const search_Result = document.querySelector(".genres");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();

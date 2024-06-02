@@ -14,11 +14,11 @@ export default function showSearchResult(data) {
   let index = -1;
   data.docs.forEach(function (film) {
     if (
-      film.poster == null ||
-      film.poster.url == null ||
-      film.name == null ||
-      film.genres.length == 0 ||
-      !film.genres
+      !film.poster ||
+      !film.poster.url ||
+      !film.name ||
+      !film.genres ||
+      film.genres.length == 0
     ) {
       index++;
       return;

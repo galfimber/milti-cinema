@@ -17,7 +17,7 @@
     color: var(--accent);
     font-size: 20px;
 
-    transform: translateY(-100%);
+    transform: translateY(-102%);
     transition: transform 0.2s ease-in;
     &.active {
       transform: translateY(0);
@@ -35,7 +35,7 @@
 
     font-size: 20px;
 
-    transform: translateY(-100%);
+    transform: translateY(-102%);
     transition: transform 0.2s ease-in;
     &.active {
       transform: translateY(0);
@@ -103,6 +103,6 @@
 }
 @media (max-width: 730px) {
   .form{
-    transform: translateY(360%);
+    transform: translateY(230%);
   }
 }
