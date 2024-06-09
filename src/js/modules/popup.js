@@ -2,8 +2,10 @@ export default function FilmInfo(film) {
   const popup = document.querySelector(".popup");
   popup.classList.add("popup--open");
   const body = document.body;
+  const html = document.querySelector("html");
   const scrollWidth = innerWidth - body.clientWidth;
   body.classList.add("no-scroll");
+  html.classList.add("no-scroll");
   body.setAttribute("style", "padding-right:" + scrollWidth + "px");
 
   popup.innerHTML = "";
