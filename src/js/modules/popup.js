@@ -116,6 +116,7 @@ export default function FilmInfo(film) {
       popup.classList.remove("popup--open");
       document.body.classList.remove("no-scroll"); // то закрываем окно навигации, удаляя активный класс
       body.style.removeProperty("padding-right");
+      html.classList.remove("no-scroll");
       popup.innerHTML = "";
     }
   });
