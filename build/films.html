@@ -67,9 +67,11 @@
       <header class="header">
   <div class="container">
     <nav class="nav">
-      <a href="./index.html" class="logo">
-        <img src="./img/logo.png" alt="" />
-      </a>
+      <div class="nav__logo">
+        <a href="./index.html" class="logo">
+          <img src="./img/logo.png" alt="" />
+        </a>
+      </div>
       <ul class="nav__list">
         <li>
           <a class="nav__link" href="./films.html">Фильмы</a>
@@ -148,6 +150,42 @@
         <h3 class="title-3">Сериалы</h3>
       </a>
     </div>
+    <div class="sortfields">
+  <div class="sortfields--year">
+    <div class="year-input">
+      <div class="year-input--field">
+        <span>от</span>
+        <input type="number" class="input-min" value="2014" />
+      </div>
+      <div class="year-input--field">
+        <span>до</span>
+        <input type="number" class="input-max" value="2024" />
+      </div>
+    </div>
+    <div class="year-input--slider">
+      <div class="year-input--progress"></div>
+    </div>
+    <div class="range-input">
+      <input
+        type="range"
+        class="range-input__min"
+        min="0"
+        max="100"
+        value="86"
+        step="1"
+      />
+      <input
+        type="range"
+        class="range-input__max"
+        min="0"
+        max="100"
+        value="100"
+        step="1"
+      />
+    </div>
+  </div>
+</div>
+
     <div class="films"></div>
     <div class="pagination">
       <div class="pages">

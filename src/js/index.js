@@ -3,6 +3,7 @@ import mobileNav from "./modules/mobile-nav.js";
 //mobileNav();
 import showSearchResult from "./modules/showSearchResult.js";
 import addWatchLater from "./modules/addWatchLater.js";
+import FilmInfo from "./modules/popup.js";
 
 //Kinopoisk Api
 
@@ -11,9 +12,24 @@ const API_KEY = "84S4SNX-Y084WMK-K7FV73W-8G8P6MH";
 const API_URL_POPULAR =
   "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=10&lists=popular-series&selectFields=watchability&selectFields=poster";
 const API_URL_SEARCH =
-  "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=30&selectFields=id&selectFields=countries&selectFields=genres&selectFields=year&selectFields=watchability&selectFields=rating&selectFields=persons&selectFields=movieLength&selectFields=poster&selectFields=description&selectFields=videos&selectFields=name";
+  "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=30&selectFields=id&selectFields=countries&selectFields=genres&selectFields=year&selectFields=watchability&selectFields=rating&selectFields=persons&selectFields=movieLength&selectFields=poster&selectFields=description&selectFields=name";
 
-getPopular(API_URL_POPULAR, "popular");
+// getPopular(API_URL_POPULAR, "popular");
+//Show watch later
+const showWatchLater = () => {
+  let searchFilms = "";
+  if (
+    JSON.parse(localStorage.getItem("films")) !== null &&
+    JSON.parse(localStorage.getItem("films")).length > 0
+  ) {
+    searchFilms = `&id=${JSON.parse(localStorage.getItem("films"))[0]}`;
+    const apiSearchUrl = `${API_URL_SEARCH}${searchFilms}`;
+    getPopular(apiSearchUrl, "popular");
+  } else {
+    getPopular(API_URL_POPULAR, "popular");
+  }
+};
+showWatchLater();
 
 async function getPopular(url, key) {
   const options = {
@@ -31,19 +47,19 @@ async function getPopular(url, key) {
     checkAddWatchLater(data.docs);
   } else {
     showPopular(data);
-    checkAddWatchLater(data.docs);
   }
 }
 
 function showPopular(data) {
   const popularImg = document.getElementById("popular-img");
-  const popularLink = document.getElementById("popular-link");
-  const num = Math.floor(Math.random() * (10 - 0) + 0);
+  const popularBtn = document.querySelector(".btn");
+  // const num = Math.floor(Math.random() * (10 - 0) + 0);
 
-  popularImg.src = data.docs[num].poster.url;
-  if (data.docs[num].watchability.items.length > 0) {
-    popularLink.href = data.docs[num].watchability.items[0].url;
-  }
+  popularImg.src = data.docs[0].poster.url;
+  // if (data.docs[num].watchability.items.length > 0) {
+  //   popularLink.href = data.docs[num].watchability.items[0].url;
+  // }
+  getAboutFilms(data.docs);
 }
 
 //Search film
@@ -89,3 +105,12 @@ const checkAddWatchLater = (data) => {
     });
   });
 };
+
+//Show popup
+function getAboutFilms(data) {
+  const aboutFilms = document.querySelector(".popular__show");
+  aboutFilms.addEventListener("click", (e) => {
+    e.preventDefault();
+    FilmInfo(data[aboutFilms.dataset.id]);
+  });
+}

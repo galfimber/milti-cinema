@@ -4,7 +4,8 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 80px;
+  column-gap: 80px;
+  row-gap: 40px;
 }
 .genre__title {
   transition: color 0.2s ease-out;
@@ -15,6 +16,7 @@
 @media (max-width: 1130px) {
   .genres {
     gap: 28px;
+    padding: 20px 20px;
   }
 }
 @media (max-width: 730px) {
@@ -24,10 +26,19 @@
     overflow-x: scroll;
     flex-wrap: nowrap;
     justify-content: flex-start;
+
+    
     &::-webkit-scrollbar {
       height: 10px;
     }
     &::-webkit-scrollbar-thumb {
+      background-color: var(--page-bg-accent);
+      border-radius: 20px;
+    }
+    &::-moz-webkit-scrollbar {
+      height: 10px;
+    }
+    &::-moz-webkit-scrollbar-thumb {
       background-color: var(--page-bg-accent);
       border-radius: 20px;
     }

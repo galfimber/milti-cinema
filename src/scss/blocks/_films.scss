@@ -1,8 +1,10 @@
 .films {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 30px;
+  max-width: 1320px;
+  margin: 0 auto;
 }
 .film {
   position: relative;
@@ -20,6 +22,12 @@
 }
 .movie__cover-inner {
   position: relative;
+  img{
+    width: 240px;
+    height: 360px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
   &:hover {
     .movie__cover--darkened {
       background-color: rgba(0, 0, 0, 0.25);

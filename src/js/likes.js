@@ -3,7 +3,7 @@ import addWatchLater from "./modules/addWatchLater.js";
 
 const API_KEY = "84S4SNX-Y084WMK-K7FV73W-8G8P6MH";
 const API_URL_SEARCH =
-  "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=30&selectFields=id&selectFields=countries&selectFields=genres&selectFields=year&selectFields=watchability&selectFields=rating&selectFields=persons&selectFields=movieLength&selectFields=poster&selectFields=description&selectFields=videos&selectFields=name";
+  "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=30&selectFields=id&selectFields=countries&selectFields=genres&selectFields=year&selectFields=watchability&selectFields=rating&selectFields=persons&selectFields=movieLength&selectFields=poster&selectFields=description&selectFields=name";
 
 async function getFilms(url) {
   const options = {
@@ -18,6 +18,36 @@ async function getFilms(url) {
   showSearchResult(data);
   checkAddWatchLater(data.docs);
 }
+
+//Search film
+const form = document.querySelector(".form");
+const inputSearch = document.querySelector(".form__input");
+const search_Result = document.querySelector(".films");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const apiSearchUrl = `${API_URL_SEARCH}&name=${inputSearch.value}`;
+  if (inputSearch.value) {
+    search_Result.scrollIntoView(true);
+    getFilms(apiSearchUrl, );
+    inputSearch.value = "";
+  }
+});
+
+//Search form
+const search = document.querySelector(".btn-search");
+const searchBtn = document.querySelector(".form__submit");
+
+search.addEventListener("click", function () {
+  inputSearch.classList.toggle("active");
+  searchBtn.classList.toggle("active");
+  if (inputSearch.classList.contains("active")) {
+    inputSearch.focus();
+  } else {
+    inputSearch.blur();
+  }
+});
 
 //Show watch later
 const showWatchLater = () => {

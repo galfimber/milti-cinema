@@ -3,6 +3,7 @@
   border-radius: 5px;
   background: var(--btn-bg);
   padding: 15px 56px;
+  margin: 0 auto;
 
   text-align: center;
   font-size: 25px;
@@ -21,6 +22,8 @@
 }
 @media (max-width: 650px) {
   .btn{
+    padding: 10px 26px;
+    font-size: 20px;
     &--main {
       padding: 22px 35px;
       font-size: 25px;

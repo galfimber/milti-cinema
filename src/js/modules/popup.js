@@ -120,4 +120,8 @@ export default function FilmInfo(film) {
       popup.innerHTML = "";
     }
   });
+
+    //max-height popup-body
+    const maxHeight = 787 - 10 - popup.querySelector('.popup__header').offsetHeight;
+    717 > maxHeight ? popup.querySelector('.popup__body').style.maxHeight = `${maxHeight}px` : "1";
 }

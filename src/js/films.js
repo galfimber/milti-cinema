@@ -3,16 +3,17 @@ import mobileNav from "./modules/mobile-nav.js";
 //mobileNav();
 import showSearchResult from "./modules/showSearchResult.js";
 import addWatchLater from "./modules/addWatchLater.js";
+import sortFields from "./modules/sortFields.js";
 
 //Kinopoisk Api
 //Show popular film
 const API_KEY = "84S4SNX-Y084WMK-K7FV73W-8G8P6MH";
 const API_URL_SEARCH =
-  "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=30&selectFields=name&selectFields=videos&selectFields=description&selectFields=poster&selectFields=movieLength&selectFields=persons.name&selectFields=rating&selectFields=watchability&selectFields=year&selectFields=genres&selectFields=id&selectFields=countries.name";
+  "https://api.kinopoisk.dev/v1.3/movie?page=1&limit=30&selectFields=name&selectFields=description&selectFields=poster&selectFields=movieLength&selectFields=persons.name&selectFields=rating&selectFields=watchability&selectFields=year&selectFields=genres&selectFields=id&selectFields=countries.name";
 
 const API_URL_BASE = "https://api.kinopoisk.dev/v1.3/movie?";
 const API_URL_FIELD =
-  "&selectFields=name&selectFields=videos&selectFields=description&selectFields=poster&selectFields=movieLength&selectFields=persons.name&selectFields=rating&selectFields=watchability&selectFields=year&selectFields=genres&selectFields=id&selectFields=countries.name";
+  "&selectFields=name&selectFields=description&selectFields=poster&selectFields=movieLength&selectFields=persons.name&selectFields=rating&selectFields=watchability&selectFields=year&selectFields=genres&selectFields=id&selectFields=countries.name";
 async function getFilms(url) {
   const options = {
     method: "GET",
@@ -36,6 +37,7 @@ genres.forEach((genre) => {
   genre.addEventListener("click", (e) => {
     selectGenre = genre.dataset.genre;
     let apiSearchUrl = `${API_URL_SEARCH}`;
+    let searchYear = `&year=${year.min}-${year.max}`;
     if (selectGenre === "сериал") {
       type = "&isSeries=true";
     } else if (selectGenre === "мультфильм") {
@@ -44,6 +46,7 @@ genres.forEach((genre) => {
       type = `&type=movie&genres.name=${encodeURIComponent(selectGenre)}`;
     }
     apiSearchUrl += type;
+    apiSearchUrl += searchYear;
     pagesBlock.classList.add("pages--visible");
     getFilms(apiSearchUrl);
   });
@@ -53,7 +56,9 @@ genres.forEach((genre) => {
 const pages = document.querySelectorAll(".pagination__btn");
 pages.forEach((page) => {
   page.addEventListener("click", (e) => {
-    const apiSearchUrl = `${API_URL_BASE}page=${page.textContent}&limit=30${type}${API_URL_FIELD}`;
+    let searchYear;
+    year.min && year.max ? searchYear = `&year=${year.min}-${year.max}` : "";
+    const apiSearchUrl = `${API_URL_BASE}page=${page.textContent}&limit=30${type}${API_URL_FIELD}${searchYear? searchYear : ""}`;
     search_Result.scrollIntoView(true);
     getFilms(apiSearchUrl);
   });
@@ -102,3 +107,7 @@ const checkAddWatchLater = (data) => {
     });
   });
 };
+
+// Sort Fields
+const year = { min: 2014, max: 2024 };
+year = sortFields(year);

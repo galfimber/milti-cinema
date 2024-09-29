@@ -32,6 +32,10 @@
     }
   }
 }
+.logo{
+  display: block;
+  width: fit-content;
+}
 @media (max-width: 1130px) {
   .nav {
     &__list {
@@ -43,12 +47,21 @@
   .nav {
     flex-wrap: wrap;
     align-items: flex-start;
+    gap: 10px;
     &__btn {
       font-size: 25px;
     }
     &__list {
       flex-direction: column;
+      align-items: flex-start;
       gap: 10px;
+    }
+  }
+}
+@media (max-width: 370px) {
+  .nav {
+    &__logo {
+      width: 100%;
     }
   }
 }

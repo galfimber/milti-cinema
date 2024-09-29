@@ -116,9 +116,11 @@
     <header class="header">
   <div class="container">
     <nav class="nav">
-      <a href="./index.html" class="logo">
-        <img src="./img/logo.png" alt="" />
-      </a>
+      <div class="nav__logo">
+        <a href="./index.html" class="logo">
+          <img src="./img/logo.png" alt="" />
+        </a>
+      </div>
       <ul class="nav__list">
         <li>
           <a class="nav__link" href="./films.html">Фильмы</a>
@@ -200,7 +202,7 @@
       <div class="popular__wrapper">
         <div class="popular__header">
             <div class="popular__title">
-                <h2 class="title-2">Популярный сериал</h2>
+                <h2 class="title-2">Вы смотрите</h2>
             </div>
             <div class="popular__more">
                 <a href="./films.html" class="popular__link link">Посмотреть остальные фильмы</a>
@@ -211,7 +213,7 @@
                 <img id="popular-img" src="" alt="">
             </div>
             <div class="popular__btn">
-                <a href="#!" target="_blank" id="popular-link" class="btn">Посмотреть</a>
+                <button data-id="0" class="btn popular__show">Продолжить просмотр</button>
             </div>
         </div>
       </div>

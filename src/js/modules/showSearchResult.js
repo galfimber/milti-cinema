@@ -38,7 +38,7 @@ export default function showSearchResult(data) {
     filmEl.classList.add("film");
     filmEl.innerHTML = `
             <button data-id="${index}" class="movie__cover-inner">
-            <img src="${film.poster.url}" alt="${
+            <img src="${film.poster.url || ""}" alt="${
       film.name
     }" class="movie__cover">
             <div class="movie__cover--darkened"></div>
