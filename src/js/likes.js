@@ -63,7 +63,7 @@ const showWatchLater = () => {
     getFilms(apiSearchUrl);
   } else {
     const searchResult = document.querySelector(".films");
-    searchResult.innerHTML = `<div class="no__film" style="font-size:30px;">Нечего смотреть...</div>`;
+    searchResult.innerHTML = `<div class="no__film" style="margin: 0 auto;font-size:30px;">Нечего смотреть...</div>`;
   }
 };
 
@@ -77,7 +77,7 @@ const checkAddWatchLater = (data) => {
 
       const searchResult = document.querySelector(".films");
       if (searchResult.children.length < 1) {
-        searchResult.innerHTML = `<div class="no__film" style="font-size:30px;">Нечего смотреть...</div>`;
+        searchResult.innerHTML = `<div class="no__film" style="margin: 0 auto;font-size:30px;">Нечего смотреть...</div>`;
       }
 
       addWatchLater(
