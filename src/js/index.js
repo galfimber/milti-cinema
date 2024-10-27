@@ -22,7 +22,7 @@ const showWatchLater = () => {
     JSON.parse(localStorage.getItem("films")) !== null &&
     JSON.parse(localStorage.getItem("films")).length > 0
   ) {
-    searchFilms = `&id=${JSON.parse(localStorage.getItem("films"))[0]}`;
+    searchFilms = `&id=${JSON.parse(localStorage.getItem("films"))[JSON.parse(localStorage.getItem("films")).length-1]}`;
     const apiSearchUrl = `${API_URL_SEARCH}${searchFilms}`;
     getPopular(apiSearchUrl, "popular");
   } else {

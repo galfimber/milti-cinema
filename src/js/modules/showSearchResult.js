@@ -14,8 +14,8 @@ export default function showSearchResult(data) {
   let index = -1;
   data.docs.forEach(function (film) {
     if (
-      !film.poster ||
-      !film.poster.url ||
+      // !film.poster ||
+      // !film.poster.url ||
       !film.name ||
       !film.genres ||
       film.genres.length == 0
@@ -33,14 +33,28 @@ export default function showSearchResult(data) {
       });
     }
 
+    const getFilmImg = () => {
+      if (
+        !("poster" in film) ||
+        !("url" in film.poster) ||
+        film.poster.url === null
+      ) {
+        return `<div class="movie__cover">${film.name}</div>`;
+      } else {
+        return `<div class="movie__cover"><img src="${
+          film.poster.url || ""
+        }" alt="${film.name}" class="movie__cover" style="display:none;">
+        <img src="./../img/preloader.gif" class="movie__cover--preloader"></div>
+        `;
+      }
+    };
+
     const filmEl = document.createElement("div");
 
     filmEl.classList.add("film");
     filmEl.innerHTML = `
             <button data-id="${index}" class="movie__cover-inner">
-            <img src="${film.poster.url || ""}" alt="${
-      film.name
-    }" class="movie__cover">
+            ${getFilmImg()}
             <div class="movie__cover--darkened"></div>
         </button>
         <div class="movie__info">
@@ -58,6 +72,18 @@ export default function showSearchResult(data) {
             `;
 
     searchResult.appendChild(filmEl);
+  });
+  const imgBlocks = document.querySelectorAll("div.movie__cover");
+  let i = 1;
+  imgBlocks.forEach((imgBlock) => {
+    const img = imgBlock.querySelector("img.movie__cover");
+    const loader = imgBlock.querySelector(".movie__cover--preloader");
+    if (img) {
+      img.addEventListener("load", function () {
+        loader.style.display = "none";
+        img.style.display = "block";
+      });
+    }
   });
   const pages = document.querySelectorAll(".pagination__btn");
   if (data.page < 4) {

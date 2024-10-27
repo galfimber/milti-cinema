@@ -81,7 +81,7 @@ export default function FilmInfo(film) {
 
   const link = [];
   const linkLogo = [];
-  if (film.watchability.items.length > 0 && film.watchability.items != null) {
+  if ("watchability" in film && film.watchability.items.length > 0) {
     for (let i = 0; i < film.watchability.items.length; i++) {
       linkLogo[i] = film.watchability.items[i].logo.url;
       link[i] = film.watchability.items[i].url;
